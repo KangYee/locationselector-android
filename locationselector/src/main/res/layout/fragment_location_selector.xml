@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.kangyee.locationselector.locationselector.ui.fragment.LocationSelectorViewModel" />
+        <variable
+            name="proxyClick"
+            type="com.kangyee.locationselector.locationselector.ui.fragment.LocationSelectorFragment.ProxyClick" />
+
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rl_map_area"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/fl_map_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dp_234"/>
+
+            <ImageView
+                android:id="@+id/iv_center_pos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_44"
+                android:src="@drawable/ic_locate_center"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@id/fl_map_container"
+                app:layout_constraintEnd_toEndOf="@id/fl_map_container"
+                app:layout_constraintTop_toTopOf="@id/fl_map_container"
+                app:layout_constraintBottom_toBottomOf="@id/fl_map_container"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_200"
+            android:background="@drawable/shape_gradient_00ffffff_to_443b3b3b"/>
+
+        <LinearLayout
+            android:id="@+id/view_bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_400"
+            android:paddingHorizontal="@dimen/dp_16"
+            android:background="@drawable/shape_top_corner16_solid_white"
+            android:orientation="vertical"
+            app:behavior_peekHeight="@dimen/dp_250"
+            app:behavior_hideable="false"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <ImageView
+                android:id="@+id/iv_collapse"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:paddingTop="@dimen/dp_16"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_locate_map_collapse"
+                android:onClick="@{() -> proxyClick.onClickCollapse()}"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_36"
+                android:layout_marginTop="@dimen/dp_16">
+
+                <EditText
+                    android:id="@+id/et_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_42"
+                    android:background="@drawable/shape_corner50_solid_f5f7fa"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="@dimen/dp_6"
+                    android:text="@={viewModel.keyword}"
+                    android:hint="搜索地点"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/color_333333"
+                    android:textColorHint="@color/color_888D98"
+                    android:singleLine="true"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_close_circle_gray"
+                    android:onClick="@{() -> proxyClick.onCleanKeyword()}"
+                    android:visibility="@{TextUtils.isEmpty(viewModel.keyword) ? View.GONE : View.VISIBLE}"/>
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_address_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
+                android:overScrollMode="never"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/v_title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_0_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_back"
+                android:layout_width="@dimen/dp_27"
+                android:layout_height="@dimen/dp_27"
+                android:layout_margin="@dimen/dp_16"
+                android:onClick="@{() -> proxyClick.onClickBack()}"
+                android:background="@drawable/shape_circle_solid_black_transparent_66"
+                app:layout_constraintTop_toBottomOf="@id/v_title_bar"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_7"
+                    android:layout_height="@dimen/dp_11"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_arrow_left_small_white"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:background="@drawable/shape_corner4_solid_0061fe"
+                android:gravity="center"
+                android:text="选择"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_FFFFFF"
+                android:onClick="@{() -> proxyClick.onClickDone()}"
+                app:layout_constraintTop_toTopOf="@id/rl_back"
+                app:layout_constraintBottom_toBottomOf="@id/rl_back"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

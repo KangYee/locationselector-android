@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isCheck"
+            type="Boolean" />
+        <variable
+            name="model"
+            type="com.kangyee.locationselector.locationselector.model.TencentPoiModel" />
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/dp_24"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_checked">
+
+            <TextView
+                android:id="@+id/tv_address_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@{model.title}"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_222222"
+                android:lines="1"
+                android:ellipsize="end"
+                tools:text="浙江天天律师所"/>
+
+            <TextView
+                android:id="@+id/tv_address_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_2"
+                android:gravity="center_vertical"
+                android:text="@{model.distance + `m | ` + model.address}"
+                android:textSize="@dimen/sp_13"
+                android:textColor="@color/color_888D98"
+                android:lines="1"
+                android:ellipsize="end"
+                tools:text="100m｜温州秀山路44号"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_step_blue"
+            android:drawablePadding="@dimen/dp_4"
+            android:text="已选择"
+            android:textColor="@color/color_0061FE"
+            android:visibility="@{isCheck ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:background="@color/color_D8D8D8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
