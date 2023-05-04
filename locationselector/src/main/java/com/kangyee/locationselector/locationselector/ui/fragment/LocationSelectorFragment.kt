@@ -277,10 +277,6 @@ class LocationSelectorFragment : BaseFragment<LocationSelectorViewModel, Fragmen
         mBinding.rvAddressList.layoutManager = LinearLayoutManager(context)
         mBinding.rvAddressList.adapter = mAdapter
 
-        mAdapter.loadMoreModule.setOnLoadMoreListener {
-            mViewModel.requestData(mTencentSearch, false)
-        }
-
         mAdapter.setOnItemClickListener { _, _, position ->
             val data = mAdapter.getItem(position)
             if (mSelectAddress == data.address) {

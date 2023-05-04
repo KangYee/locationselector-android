@@ -19,7 +19,7 @@ allprojects {
 
 ```
 dependencies {
-    implementation 'com.github.User:Repo:Tag'
+    implementation 'com.github.KangYee:LocationSelector:1.0.0-SNAPSHOT'
 }
 ```
 
