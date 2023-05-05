@@ -2,7 +2,7 @@
 
 LocationSelector 是一个仿微信发送位置样式的 Android 位置选择器库，项目通过 Kotlin 编写，并接入腾讯地图，数据传递使用 Fragment Result API
 
-<img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dd3391ab30ce488a83249df583541119~tplv-k3u1fbpfcp-watermark.image?" alt="37_1683289677.gif" width="30%" />
+![sample](https://github.com/KangYee/LocationSelector/blob/dev/demo.gif)
 
 ## 写在前面
 
