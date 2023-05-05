@@ -44,6 +44,7 @@ import com.blankj.utilcode.util.KeyboardUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.gson.Gson
 import com.kangyee.locationselector.locationselector.R
 import com.kangyee.locationselector.locationselector.base.BaseFragment
 import com.kangyee.locationselector.locationselector.common.constant.LocationSelectorConstants
@@ -477,7 +478,10 @@ class LocationSelectorFragment : BaseFragment<LocationSelectorViewModel, Fragmen
             val model = LocationSelectorResultModel(
                 mSelectAddress, mSelectLat, mSelectLng
             )
-            onClickBack()
+            val modelJson = Gson().toJson(model)
+            parentFragmentManager.setFragmentResult(LocationSelectorConstants.REQUEST_KEY, Bundle().apply {
+                putString(LocationSelectorConstants.RESULT_KEY, modelJson)
+            })
         }
 
         fun onClickCollapse() {

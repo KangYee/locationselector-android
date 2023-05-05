@@ -23,8 +23,11 @@ package com.kangyee.locationselector.demo
 
 import android.Manifest
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.kangyee.locationselector.demo.util.PermissionUtils
+import com.kangyee.locationselector.locationselector.common.constant.LocationSelectorConstants
+import com.kangyee.locationselector.locationselector.model.LocationSelectorResultModel
 import com.kangyee.locationselector.locationselector.ui.fragment.LocationSelectorFragment
 import com.tencent.map.geolocation.TencentLocationManager
 import com.tencent.tencentmap.mapsdk.maps.TencentMapInitializer
@@ -35,14 +38,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 请注意确保在用户知情且同意的情况下，调用一下两个方法，规避合规问题
+        // 请注意确保在用户知情且同意的情况下，调用以下两个方法，规避合规问题
         TencentMapInitializer.setAgreePrivacy(true)
         TencentLocationManager.setUserAgreePrivacy(true)
 
+        // 务必确保请求了权限
         PermissionUtils.requestPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION) {
 
             val transaction = supportFragmentManager.beginTransaction()
+            supportFragmentManager.setFragmentResultListener(
+                LocationSelectorConstants.REQUEST_KEY, this
+            ) { requestKey, bundle ->
+                val result = bundle.getString(LocationSelectorConstants.RESULT_KEY)
+                Log.i("LocationSelectorResult", result ?: "NULL")
+            }
             transaction.replace(R.id.fl_map_container, LocationSelectorFragment())
             transaction.commitNow()
 

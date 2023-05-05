@@ -2,11 +2,23 @@
 
 LocationSelector 是一个仿微信发送位置样式的 Android 位置选择器库，项目通过 Kotlin 编写，并接入腾讯地图，数据传递使用 Fragment Result API
 
+## 写在前面
+
+- 使用前请确保已经获取了位置权限，本库不包含权限获取
+- 使用前请确保用户在知情并同意相关隐私条款的情况下调用以下2个方法，否则地图会报错
+```
+TencentMapInitializer.setAgreePrivacy(true)
+TencentLocationManager.setUserAgreePrivacy(true)
+```
+
 ## TODO
+
 - 选择过的点增加Marker，点击可直接选择
+- 仿微信相互切换 Marker 的动画过渡效果
 - 优化地点搜索的结果（支持搜索全国地点）
 - 周边地点的加载更多
 - 支持 Activity 的使用方式
+- 更多的可配置参数
 
 ## 集成方式
 
@@ -44,11 +56,7 @@ dependencies {
 #### Fragment
 
 1. 引入 `LocationSelectorFragment`
-2. 通过 `setFragmentResultListener` 来接收用户选择的位置数据
-
-
-需要注意的是，数据只会在 `LocationSelectorFragment` 销毁时回传，也就是触发 OnDestory 时
-
+2. 通过 `setFragmentResultListener` 来接收用户选择的位置数据，具体请参考 sample
 
 ## License
 

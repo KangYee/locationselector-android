@@ -23,6 +23,20 @@ package com.kangyee.locationselector.locationselector.common.constant
 
 object LocationSelectorConstants {
 
+    /**
+     * 每页的最大数量
+     */
     const val PAGE_MAX_COUNT = 10
+
+    /**
+     * 用于 setFragmentResultListener 中使用的 requestKey
+     */
+    const val REQUEST_KEY = "LOCATION_SELECTOR_REQUEST_KEY"
+
+    /**
+     * 用于 setFragmentResultListener 中通过 bundle 获取的 key
+     * 值类型：不为空的Json字符串
+     */
+    const val RESULT_KEY = "LOCATION_SELECTOR_RESULT_KEY"
 
 }
