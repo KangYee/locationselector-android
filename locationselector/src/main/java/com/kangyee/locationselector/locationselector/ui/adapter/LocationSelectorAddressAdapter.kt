@@ -38,7 +38,7 @@ class LocationSelectorAddressAdapter : BaseQuickAdapter<TencentPoiModel, BaseVie
     R.layout.item_location_selector_address
 ), LoadMoreModule {
 
-    var activePosition = -1
+    private var activePosition = -1
 
     override fun onItemViewHolderCreated(viewHolder: BaseViewHolder, viewType: Int) {
         // 绑定 view
@@ -53,6 +53,15 @@ class LocationSelectorAddressAdapter : BaseQuickAdapter<TencentPoiModel, BaseVie
 
             it.executePendingBindings()
         }
+    }
+
+    fun getActivePosition(): Int {
+        return activePosition
+    }
+
+    fun setActivePosition(value: Int) {
+        activePosition = value
+        notifyDataSetChanged()
     }
 
 }

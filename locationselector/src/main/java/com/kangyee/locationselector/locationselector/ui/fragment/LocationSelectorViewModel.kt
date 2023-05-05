@@ -69,7 +69,7 @@ class LocationSelectorViewModel : ViewModel() {
             page = 1
         }
 
-        val region = SearchParam.Nearby(mCurrentLatLng, 1000).autoExtend(false)
+        val region = SearchParam.Nearby(mCurrentLatLng, 4000).autoExtend(false)
         val searchParam = SearchParam(keyword.get(), region)
         searchParam.pageIndex(page)
 
@@ -113,7 +113,7 @@ class LocationSelectorViewModel : ViewModel() {
         val geo2AddressParam = Geo2AddressParam(mCurrentLatLng).getPoi(true)
             .setPoiOptions(
                 Geo2AddressParam.PoiOptions()
-                    .setRadius(1000)
+                    .setRadius(4000)
                     .setPageIndex(page)
             )
         tencentSearch.geo2address(geo2AddressParam, object : HttpResponseListener<BaseObject> {

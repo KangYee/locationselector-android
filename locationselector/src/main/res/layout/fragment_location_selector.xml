@@ -21,7 +21,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/rl_map_area"
+            android:id="@+id/cl_map_area"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

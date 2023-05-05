@@ -26,7 +26,7 @@ import com.google.gson.annotations.SerializedName
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng
 
 data class TencentPoiModel(
-    @SerializedName("_distance")
+    @SerializedName(value = "DISTANCE", alternate = ["_distance", "distance"])
     val distance: String?,
     @SerializedName("title")
     val title: String?,
